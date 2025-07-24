@@ -2,11 +2,11 @@
 # name: Python Fire
 
 # >>> IS TRIGGER
-# on:
-#   push:
-#     branches: ["master"]
-#   pull_request:
-#     branches: ["master"]
+on:
+  push:
+    branches: ["master"]
+  pull_request:
+    branches: ["master"]
 
 defaults:
   run:
