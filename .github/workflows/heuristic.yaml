@@ -1,0 +1,43 @@
+name: Python Fire
+on: push
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+        python-version:
+          - '3.10'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install Dependencies
+        run: |
+          apt install -y adduser base-files bash bash-completion command-not-found cron debconf distro-info-data e2fsprogs fuse3 gettext-base hdparm keyutils libattr1:amd64 libaudit-common libc-bin libc6:amd64 libmagic1:amd64 libmecab2:amd64 libpam-runtime libpython3.10-minimal:amd64 libpython3.10-stdlib:amd64 libsensors-config libtirpc-common locales login logrotate lsb-release ltrace mailcap man-db media-types multipath-tools nano ncurses-base netbase nftables openssl overlayroot procps python3-apport python3-zope.interface python3.10-minimal rsyslog screen sudo tar tzdata ucf unixodbc-common usb-modeswitch walinuxagent wget
+          pip install Levenshtein==0.26.1 pure_eval==0.2.3
+      - run: |
+          ./.github/scripts/build.sh
+    env:
+      ACCEPT_EULA: Y
+      ANSI_COLORS_DISABLED: '1'
+      BOOTSTRAP_HASKELL_NONINTERACTIVE: '1'
+      DEBIAN_FRONTEND: noninteractive
+      DOTNET_MULTILEVEL_LOOKUP: '0'
+      DOTNET_NOLOGO: '1'
+      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: '1'
+      HOMEBREW_CLEANUP_PERIODIC_FULL_DAYS: '3650'
+      HOMEBREW_NO_AUTO_UPDATE: '1'
+      HOSTNAME: pop-os
+      ImageOS: ubuntu22
+      ImageVersion: 20250622.1.0
+      LC_CTYPE: C.UTF-8
+      PLAT: linux-x86_64
+      POWERSHELL_DISTRIBUTION_CHANNEL: GitHub-Actions-ubuntu22
+      PYTHON_VERSION: '3.10'
+      SHLVL: '2'
+      TERM: xterm
+      _PYI_LINUX_PROCESS_NAME: sawra
+      _PYI_PARENT_PROCESS_LEVEL: '1'
