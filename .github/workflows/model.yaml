@@ -12,10 +12,12 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.x'
+          python-version: '3.11'
 
       - name: Install dependencies
         run: |
+          python -m pip install --upgrade pip
+          python -m pip install tox
           pip install setuptools<=78.1.0 pip pylint<3.3.7 pytest<=8.3.3 pytest-pylint<=1.1.2 pytest-runner<7.0.0 termcolor<2.6.0 hypothesis<6.133.0 levenshtein<=0.26.1
 
       - name: Run build script
