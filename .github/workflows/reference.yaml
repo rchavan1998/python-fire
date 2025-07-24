@@ -4,9 +4,9 @@
 # >>> IS TRIGGER
 on:
   push:
-    branches: ["master"]
+    branches: ["reference"]
   pull_request:
-    branches: ["master"]
+    branches: ["reference"]
 
 defaults:
   run:
